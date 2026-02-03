@@ -1,0 +1,12 @@
+{
+  "id": 4,
+  "name": "Döviz Alış",
+  "description": "",
+  "type": "mobile",
+  "natural_steps": "2 Saniye Bekle\n\"Test\" butonuna Tıkla\n\"Prep\" butonuna Tıkla\n\"Devam\" butonuna Tıkla\n7 Saniye Bekle\n\"Giriş Yap\" butonuna Tıkla\n\"Şifre Giriniz\" alanına tıkla\n\"121212\" yaz\n10 Saniye Bekle\n\"Toplam Varlıklarım\" yazısını gör\n\"İşlemler\" butonuna Tıkla\n\"Döviz/Kıymetli Maden\" butonuna Tıkla\n\"Döviz Alış/Satış\" butonuna Tıkla\n2 Saniye Bekle\n\"Alış\" yazısını gör\n\"Satış\" yazısını gör\n\"Kurlar\" yazısını gör\n\"Döviz Türü\" butonuna Tıkla\n2 Saniye Bekle\n\"Amerikan Doları(USD)\" butonuna Tıkla\n2 Saniye Bekle\n\"TL\" alanına tıkla\n\"1000\" yaz\n\"Devam Et\" butonuna Tıkla\n4 Saniye Bekle\n\"Onayla\" butonuna Tıkla\n5 Saniye Bekle\n\"Döviz alış işlemi gerçekleşti\" yazısını gör\n\"Dekont\" yazısını gör\n\"Tamam\" yazısını gör\n\"Tamam\" butonuna Tıkla\n10 Saniye Bekle\n\"Toplam Varlıklarım\" yazısını gör",
+  "steps_json": {},
+  "config_json": "{\"app_package\":\"com.vakifkatilim.mobil.test\",\"app_activity\":\"\",\"restart_app\":true}",
+  "tags": [],
+  "created_at": "2025-12-20T23:31:01.963087",
+  "updated_at": "2025-12-24T21:46:06.913486"
+}
