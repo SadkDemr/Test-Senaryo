@@ -1,0 +1,12 @@
+{
+  "id": 1,
+  "name": "Login",
+  "description": "",
+  "type": "mobile",
+  "natural_steps": "2 Saniye Bekle\n\"Test\" butonuna Tıkla\n\"Prep\" butonuna Tıkla\n\"Devam\" butonuna Tıkla\n2 Saniye Bekle\n\"Giriş\" butonuna Tıkla\n",
+  "steps_json": {},
+  "config_json": "{\"app_package\":\"com.vakifkatilim.mobil.test\",\"app_activity\":\"\"}",
+  "tags": [],
+  "created_at": "2025-12-20T21:51:16.260113",
+  "updated_at": "2025-12-20T21:52:50.235302"
+}
