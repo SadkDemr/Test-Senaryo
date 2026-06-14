@@ -283,6 +283,24 @@ try:
     time.sleep(0.5)
     print('STEP_DONE:6')
 
+    print('STEP_START:7')
+    # "Ctrl+A" Bas
+    _safe_click_web(driver, 'Ctrl+A')
+    time.sleep(0.5)
+    print('STEP_DONE:7')
+
+    print('STEP_START:8')
+    # "Delete" Bas
+    _safe_click_web(driver, 'Delete')
+    time.sleep(0.5)
+    print('STEP_DONE:8')
+
+    print('STEP_START:9')
+    # "400000" yaz
+    _safe_input_web(driver, '', '400000', is_password=False)
+    time.sleep(0.3)
+    print('STEP_DONE:9')
+
 except Exception as e:
     print(f"HATA: {e}")
     raise
