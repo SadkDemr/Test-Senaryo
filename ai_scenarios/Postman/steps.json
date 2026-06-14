@@ -11,7 +11,9 @@
       "api_url": "",
       "api_method": "GET",
       "api_headers": "",
-      "api_body": ""
+      "api_body": "",
+      "var_name": "",
+      "json_field": ""
     },
     {
       "type": "text",
@@ -23,7 +25,9 @@
       "api_url": "",
       "api_method": "GET",
       "api_headers": "",
-      "api_body": ""
+      "api_body": "",
+      "var_name": "",
+      "json_field": ""
     },
     {
       "type": "text",
@@ -35,7 +39,9 @@
       "api_url": "",
       "api_method": "GET",
       "api_headers": "",
-      "api_body": ""
+      "api_body": "",
+      "var_name": "",
+      "json_field": ""
     },
     {
       "type": "text",
@@ -47,7 +53,9 @@
       "api_url": "",
       "api_method": "GET",
       "api_headers": "",
-      "api_body": ""
+      "api_body": "",
+      "var_name": "",
+      "json_field": ""
     },
     {
       "type": "sql",
@@ -59,7 +67,9 @@
       "api_url": "",
       "api_method": "GET",
       "api_headers": "",
-      "api_body": ""
+      "api_body": "",
+      "var_name": "agirlik",
+      "json_field": ""
     },
     {
       "type": "api",
@@ -71,7 +81,37 @@
       "api_url": " https://jsonplaceholder.typicode.com/posts/1",
       "api_method": "GET",
       "api_headers": "",
-      "api_body": ""
+      "api_body": "",
+      "var_name": "postId",
+      "json_field": "title"
+    },
+    {
+      "type": "text",
+      "content": "{{agirlik}} yaz",
+      "b64": "",
+      "action": "click",
+      "db_connection": "",
+      "sql_query": "",
+      "api_url": "",
+      "api_method": "GET",
+      "api_headers": "",
+      "api_body": "",
+      "var_name": "",
+      "json_field": ""
+    },
+    {
+      "type": "text",
+      "content": "{{postId}} yaz",
+      "b64": "",
+      "action": "click",
+      "db_connection": "",
+      "sql_query": "",
+      "api_url": "",
+      "api_method": "GET",
+      "api_headers": "",
+      "api_body": "",
+      "var_name": "",
+      "json_field": ""
     }
   ],
   "platform": "desktop",

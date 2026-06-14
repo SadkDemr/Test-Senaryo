@@ -5,6 +5,7 @@ import time
 
 _AI_CONFIG_PATH = r"C:\Users\Sadik Demir\Documents\GitHub\OtomasyoToolFastApi\backend\ai_config.json"
 _WINDOW_TITLE   = ""
+_VARS = {}  # adımlar arası değişken havuzu
 
 
 import base64 as _ib64, tempfile as _itmp, os as _ios, time as _itime
@@ -460,6 +461,8 @@ try:
         _rows_4 = _cur_4.fetchall()
         print(f'[SQL] {len(_rows_4)} kayit:')
         for _r in _rows_4: print('  ', list(_r))
+        _VARS['agirlik'] = str(_rows_4[0][0] if _rows_4 else '')
+        print(f'[SQL→_VARS] agirlik = {_VARS['agirlik']}')
         _db_4.close()
         print('STEP_DONE:4')
     except Exception as _e_4:
@@ -476,11 +479,34 @@ try:
         _resp_5.raise_for_status()
         print(f'[API] Status: {_resp_5.status_code}')
         print(f'[API] Yanit: {_resp_5.text[:500]}')
+        _api_json_5 = _resp_5.json()
+        def _jpath_5(d, p):
+            for k in p.split('.'):
+                if isinstance(d, dict): d = d.get(k)
+                elif isinstance(d, list):
+                    try: d = d[int(k)]
+                    except: return None
+                else: return None
+            return d
+        _extracted_5 = _jpath_5(_api_json_5, 'title')
+        print(f'[API.title] {_extracted_5}')
+        _VARS['postId'] = str(_extracted_5 if _extracted_5 is not None else '')
+        print(f'[API→_VARS] postId = {_VARS['postId']}')
         print('STEP_DONE:5')
     except Exception as _e_5:
         print(f'[FAIL] {_e_5}')
         print('STEP_FAIL:5')
         raise
+
+    print('STEP_START:6')
+    # {{ agirlik }} yaz
+    _safe_type_desktop(str(_VARS.get('agirlik', '')))
+    print('STEP_DONE:6')
+
+    print('STEP_START:7')
+    # {{ postId }} yaz
+    _safe_type_desktop(str(_VARS.get('postId', '')))
+    print('STEP_DONE:7')
 
 except Exception as e:
     print(f"HATA: {e}")
