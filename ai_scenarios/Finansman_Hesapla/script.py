@@ -21,6 +21,14 @@ if 'driver' not in dir():
     print("[HATA] Tarayıcı sürücüsü başlatılamadı. Chrome/Firefox kurulu mu?")
     raise SystemExit(1)
 
+import os as _os_s, sys as _sys_s
+_STOP_FILE = _os_s.environ.get("_AI_STOP_FILE", "")
+def _check_stop():
+    if _STOP_FILE and _os_s.path.exists(_STOP_FILE):
+        try: _os_s.unlink(_STOP_FILE)
+        except: pass
+        raise SystemExit(0)
+
 
 import base64 as _ib64, tempfile as _itmp, os as _ios, time as _itime
 
@@ -167,44 +175,84 @@ def _safe_click_web(driver, text):
 
 
 def _safe_input_web(driver, field_hint, value, is_password=False):
-    """Input alanını placeholder/label/name/id ile bul ve değer gir"""
+    """Input alanini placeholder/label/name/id ile bul ve deger gir"""
     from selenium.webdriver.common.by import By
+    from selenium.webdriver.common.action_chains import ActionChains
     import time
     hint = (field_hint or "").strip().lower()
     val  = str(value)
 
-    strategies = []
-    if is_password:
-        strategies += [
-            (By.XPATH,       '//input[@type="password"]'),
-            (By.CSS_SELECTOR,'input[type="password"]'),
-        ]
-    if hint:
-        strategies += [
-            (By.XPATH, f'//input[contains(translate(@placeholder,"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz"),"{hint}")]'),
-            (By.XPATH, f'//textarea[contains(translate(@placeholder,"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz"),"{hint}")]'),
-            (By.XPATH, f'//input[@id=//label[contains(translate(.,"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz"),"{hint}")]/@for]'),
-            (By.XPATH, f'//input[contains(translate(@name,"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz"),"{hint}")]'),
-            (By.XPATH, f'//input[contains(translate(@id,"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz"),"{hint}")]'),
-            (By.XPATH, f'//input[contains(translate(@aria-label,"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz"),"{hint}")]'),
-        ]
-    strategies += [
-        (By.XPATH,        '//input[@type="text" or not(@type)]'),
-        (By.CSS_SELECTOR, 'input:not([type="hidden"]):not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"])'),
-    ]
+    def _type_into(el):
+        driver.execute_script("arguments[0].scrollIntoView({block:'center'});", el)
+        time.sleep(0.15)
+        el.clear()
+        el.send_keys(val)
 
-    for by, sel in strategies:
+    # 1) Her durumda once aktif (odaktaki) elemana yaz
+    #    Gorsel tiklamadan sonra oraya gelir, hint olmasa da calisir
+    try:
+        _ae = driver.switch_to.active_element
+        if _ae and _ae.tag_name.lower() in ("input", "textarea"):
+            _type_into(_ae)
+            print(f"[OK] Aktif elemana girildi: '{val}'")
+            return
+    except Exception:
+        pass
+
+    # 2) Password
+    if is_password:
+        for _by, _sel in [
+            (By.XPATH,        '//input[@type="password"]'),
+            (By.CSS_SELECTOR, 'input[type="password"]'),
+        ]:
+            try:
+                _e = _wdwait(driver, 4).until(_EC_WEB.visibility_of_element_located((_by, _sel)))
+                _type_into(_e)
+                print(f"[OK] Sifre girildi")
+                return
+            except Exception:
+                continue
+
+    # 3) Hint ile ara
+    if hint:
+        _UC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        _LC = "abcdefghijklmnopqrstuvwxyz"
+        for _by, _sel in [
+            (By.XPATH, f'//input[contains(translate(@placeholder,"{_UC}","{_LC}"),"{hint}")]'),
+            (By.XPATH, f'//textarea[contains(translate(@placeholder,"{_UC}","{_LC}"),"{hint}")]'),
+            (By.XPATH, f'//input[contains(translate(@name,"{_UC}","{_LC}"),"{hint}")]'),
+            (By.XPATH, f'//input[contains(translate(@id,"{_UC}","{_LC}"),"{hint}")]'),
+            (By.XPATH, f'//input[contains(translate(@aria-label,"{_UC}","{_LC}"),"{hint}")]'),
+            (By.XPATH, f'//*[contains(translate(.,"{_UC}","{_LC}"),"{hint}")]//following-sibling::input[1]'),
+            (By.XPATH, f'//*[contains(translate(.,"{_UC}","{_LC}"),"{hint}")]/..//input[1]'),
+        ]:
+            try:
+                _e = _wdwait(driver, 3).until(_EC_WEB.visibility_of_element_located((_by, _sel)))
+                _type_into(_e)
+                print(f"[OK] Girildi: '{val}' (hint: {hint})")
+                return
+            except Exception:
+                continue
+
+    # 4) Sayfadaki ilk gorunur input/textarea
+    for _by, _sel in [
+        (By.CSS_SELECTOR, 'input:not([type=hidden]):not([type=submit]):not([type=button]):not([type=checkbox]):not([type=radio]):not([type=file])'),
+        (By.TAG_NAME,     'textarea'),
+    ]:
         try:
-            el = _wdwait(driver, 5).until(_EC_WEB.visibility_of_element_located((by, sel)))
-            driver.execute_script("arguments[0].scrollIntoView({block:'center'});", el)
-            time.sleep(0.2)
-            el.clear()
-            el.send_keys(val)
-            print(f"[OK] Girildi: '{val}' (hint: {hint or 'generic'})")
+            _e = _wdwait(driver, 3).until(_EC_WEB.visibility_of_element_located((_by, _sel)))
+            _type_into(_e)
+            print(f"[OK] Girildi: '{val}' (ilk input)")
             return
         except Exception:
             continue
-    raise Exception(f"Input alanı bulunamadı: {field_hint}")
+
+    # 5) Son care: ActionChains ile mevcut odaga gonder
+    try:
+        ActionChains(driver).send_keys(val).perform()
+        print(f"[OK] ActionChains ile girildi: '{val}'")
+    except Exception as _ex:
+        raise Exception(f"Input girilemiyor: {_ex}")
 
 
 def _safe_assert_web(driver, text):
@@ -234,23 +282,42 @@ wait = WebDriverWait(driver, 10)
 try:
     driver.get("https://www.vakifkatilim.com.tr/tr")
     time.sleep(1.5)
+    _check_stop()
     print('STEP_START:0')
-    # Aşağı kaydırılır
-    driver.execute_script("window.scrollBy(0, 400);")
-    time.sleep(0.4)
-    print('STEP_DONE:0')
+    try:
+        # Aşağı kaydırılır
+        driver.execute_script("window.scrollBy(0, 400);")
+        time.sleep(0.4)
+        print('STEP_DONE:0')
+    except Exception as _e_0:
+        print(f'[FAIL] {_e_0}')
+        print('STEP_FAIL:0')
+        raise
 
+    _check_stop()
     print('STEP_START:1')
-    # "Finansman Hesapla" tıklanır
-    _safe_click_web(driver, 'Finansman Hesapla')
-    time.sleep(0.5)
-    print('STEP_DONE:1')
+    try:
+        # "Finansman Hesapla" tıklanır
+        _safe_click_web(driver, 'Finansman Hesapla')
+        time.sleep(0.5)
+        print('STEP_DONE:1')
+    except Exception as _e_1:
+        print(f'[FAIL] {_e_1}')
+        print('STEP_FAIL:1')
+        raise
 
+    _check_stop()
     print('STEP_START:2')
-    # "Finansman Türü" görünmeli
-    _safe_assert_web(driver, 'Finansman Türü')
-    print('STEP_DONE:2')
+    try:
+        # "Finansman Türü" görünmeli
+        _safe_assert_web(driver, 'Finansman Türü')
+        print('STEP_DONE:2')
+    except Exception as _e_2:
+        print(f'[FAIL] {_e_2}')
+        print('STEP_FAIL:2')
+        raise
 
+    _check_stop()
     # [GÖRSEL TIKLAMA] Görsel element
     print('STEP_START:3')
     try:
@@ -266,17 +333,30 @@ try:
         print('STEP_FAIL:3')
         raise
 
+    _check_stop()
     print('STEP_START:4')
-    # "Taşıt Finansmanı 0 km" tıklanır
-    _safe_click_web(driver, 'Taşıt Finansmanı 0 km')
-    time.sleep(0.5)
-    print('STEP_DONE:4')
+    try:
+        # "Taşıt Finansmanı 0 km" tıklanır
+        _safe_click_web(driver, 'Taşıt Finansmanı 0 km')
+        time.sleep(0.5)
+        print('STEP_DONE:4')
+    except Exception as _e_4:
+        print(f'[FAIL] {_e_4}')
+        print('STEP_FAIL:4')
+        raise
 
+    _check_stop()
     print('STEP_START:5')
-    # "Tutar" görünmeli
-    _safe_assert_web(driver, 'Tutar')
-    print('STEP_DONE:5')
+    try:
+        # "Tutar" görünmeli
+        _safe_assert_web(driver, 'Tutar')
+        print('STEP_DONE:5')
+    except Exception as _e_5:
+        print(f'[FAIL] {_e_5}')
+        print('STEP_FAIL:5')
+        raise
 
+    _check_stop()
     # [GÖRSEL TIKLAMA] Görsel element
     print('STEP_START:6')
     try:
@@ -292,23 +372,51 @@ try:
         print('STEP_FAIL:6')
         raise
 
+    _check_stop()
     print('STEP_START:7')
-    # "Ctrl+A" Bas
-    _safe_click_web(driver, 'Ctrl+A')
-    time.sleep(0.5)
-    print('STEP_DONE:7')
+    try:
+        # "Ctrl+A" Bas
+        from selenium.webdriver.common.keys import Keys
+        from selenium.webdriver.common.action_chains import ActionChains
+        _ac_web = ActionChains(driver)
+        _ac_web.key_down(Keys.CONTROL)
+        _ac_web.send_keys('a')
+        _ac_web.key_up(Keys.CONTROL)
+        _ac_web.perform()
+        time.sleep(0.2)
+        print('STEP_DONE:7')
+    except Exception as _e_7:
+        print(f'[FAIL] {_e_7}')
+        print('STEP_FAIL:7')
+        raise
 
+    _check_stop()
     print('STEP_START:8')
-    # "Delete" Bas
-    _safe_click_web(driver, 'Delete')
-    time.sleep(0.5)
-    print('STEP_DONE:8')
+    try:
+        # "Delete" Bas
+        from selenium.webdriver.common.keys import Keys
+        from selenium.webdriver.common.action_chains import ActionChains
+        _ac_web = ActionChains(driver)
+        _ac_web.send_keys(Keys.DELETE)
+        _ac_web.perform()
+        time.sleep(0.2)
+        print('STEP_DONE:8')
+    except Exception as _e_8:
+        print(f'[FAIL] {_e_8}')
+        print('STEP_FAIL:8')
+        raise
 
+    _check_stop()
     print('STEP_START:9')
-    # "400000" yaz
-    _safe_input_web(driver, '', '400000', is_password=False)
-    time.sleep(0.3)
-    print('STEP_DONE:9')
+    try:
+        # "400000" yaz
+        _safe_input_web(driver, '', '400000', is_password=False)
+        time.sleep(0.3)
+        print('STEP_DONE:9')
+    except Exception as _e_9:
+        print(f'[FAIL] {_e_9}')
+        print('STEP_FAIL:9')
+        raise
 
 except Exception as e:
     print(f"HATA: {e}")
