@@ -1,0 +1,66 @@
+{
+  "name": "Finansman Hesapla",
+  "steps": [
+    {
+      "type": "text",
+      "content": "Aşağı kaydırılır",
+      "b64": "",
+      "action": "click",
+      "db_connection": "",
+      "sql_query": "",
+      "api_url": "",
+      "api_method": "GET",
+      "api_headers": "",
+      "api_body": "",
+      "var_name": "",
+      "json_field": ""
+    },
+    {
+      "type": "text",
+      "content": "\"Finansman Hesapl\" tıklanır",
+      "b64": "",
+      "action": "click",
+      "db_connection": "",
+      "sql_query": "",
+      "api_url": "",
+      "api_method": "GET",
+      "api_headers": "",
+      "api_body": "",
+      "var_name": "",
+      "json_field": ""
+    },
+    {
+      "type": "text",
+      "content": "\"Finansman Türü\" görünmeli",
+      "b64": "",
+      "action": "click",
+      "db_connection": "",
+      "sql_query": "",
+      "api_url": "",
+      "api_method": "GET",
+      "api_headers": "",
+      "api_body": "",
+      "var_name": "",
+      "json_field": ""
+    },
+    {
+      "type": "text",
+      "content": "\"İhtiyaç Finansmanı\" Tıklanır",
+      "b64": "",
+      "action": "click",
+      "db_connection": "",
+      "sql_query": "",
+      "api_url": "",
+      "api_method": "GET",
+      "api_headers": "",
+      "api_body": "",
+      "var_name": "",
+      "json_field": ""
+    }
+  ],
+  "platform": "web",
+  "params": {
+    "browser": "chrome",
+    "target_url": "https://www.vakifkatilim.com.tr/tr"
+  }
+}
