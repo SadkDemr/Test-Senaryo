@@ -1,0 +1,34 @@
+{
+  "run_id": "b644307d",
+  "scenario_name": "Finansman Hesapla",
+  "scenario_folder": "Finansman_Hesapla",
+  "platform": "web",
+  "started_at": "2026-06-14T21:20:34.333965",
+  "ended_at": "2026-06-14T21:20:54.493405",
+  "exit_code": 1,
+  "total_steps": 4,
+  "passed": 3,
+  "failed": 0,
+  "steps": [
+    {
+      "index": 0,
+      "label": "Aşağı kaydırılır",
+      "status": "pass"
+    },
+    {
+      "index": 1,
+      "label": "\"Finansman Hesapl\" tıklanır",
+      "status": "pass"
+    },
+    {
+      "index": 2,
+      "label": "\"Finansman Türü\" görünmeli",
+      "status": "pass"
+    },
+    {
+      "index": 3,
+      "label": "\"İhtiyaç Finansmanı\" Tıklanır",
+      "status": "unknown"
+    }
+  ]
+}
