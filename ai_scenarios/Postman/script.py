@@ -471,6 +471,11 @@ try:
         print('STEP_FAIL:5')
         raise
 
+    print('STEP_START:6')
+    # 4 saniye bekle
+    time.sleep(4)
+    print('STEP_DONE:6')
+
 except Exception as e:
     print(f"HATA: {e}")
     raise
