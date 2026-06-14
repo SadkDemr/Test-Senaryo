@@ -70,6 +70,34 @@
       "api_body": "",
       "var_name": "",
       "json_field": ""
+    },
+    {
+      "type": "text",
+      "content": "\"Tutar\" görünmeli",
+      "b64": "",
+      "action": "click",
+      "db_connection": "",
+      "sql_query": "",
+      "api_url": "",
+      "api_method": "GET",
+      "api_headers": "",
+      "api_body": "",
+      "var_name": "",
+      "json_field": ""
+    },
+    {
+      "type": "text",
+      "content": "\"100.00\" Tıklanır",
+      "b64": "",
+      "action": "click",
+      "db_connection": "",
+      "sql_query": "",
+      "api_url": "",
+      "api_method": "GET",
+      "api_headers": "",
+      "api_body": "",
+      "var_name": "",
+      "json_field": ""
     }
   ],
   "platform": "web",

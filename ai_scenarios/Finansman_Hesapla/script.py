@@ -272,6 +272,17 @@ try:
     time.sleep(0.5)
     print('STEP_DONE:4')
 
+    print('STEP_START:5')
+    # "Tutar" görünmeli
+    _safe_assert_web(driver, 'Tutar')
+    print('STEP_DONE:5')
+
+    print('STEP_START:6')
+    # "100.00" Tıklanır
+    _safe_click_web(driver, '100.00')
+    time.sleep(0.5)
+    print('STEP_DONE:6')
+
 except Exception as e:
     print(f"HATA: {e}")
     raise
