@@ -1,0 +1,64 @@
+{
+  "run_id": "7f14255d",
+  "scenario_name": "Finansman Hesapla",
+  "scenario_folder": "Finansman_Hesapla",
+  "platform": "web",
+  "started_at": "2026-06-14T22:14:14.802874",
+  "ended_at": "2026-06-14T22:14:33.917720",
+  "exit_code": 0,
+  "total_steps": 10,
+  "passed": 10,
+  "failed": 0,
+  "steps": [
+    {
+      "index": 0,
+      "label": "Aşağı kaydırılır",
+      "status": "pass"
+    },
+    {
+      "index": 1,
+      "label": "\"Finansman Hesapla\" tıklanır",
+      "status": "pass"
+    },
+    {
+      "index": 2,
+      "label": "\"Finansman Türü\" görünmeli",
+      "status": "pass"
+    },
+    {
+      "index": 3,
+      "label": "Görsel element",
+      "status": "pass"
+    },
+    {
+      "index": 4,
+      "label": "\"Taşıt Finansmanı 0 km\" tıklanır",
+      "status": "pass"
+    },
+    {
+      "index": 5,
+      "label": "\"Tutar\" görünmeli",
+      "status": "pass"
+    },
+    {
+      "index": 6,
+      "label": "Görsel element",
+      "status": "pass"
+    },
+    {
+      "index": 7,
+      "label": "\"Ctrl+A\" Bas",
+      "status": "pass"
+    },
+    {
+      "index": 8,
+      "label": "\"Delete\" Bas",
+      "status": "pass"
+    },
+    {
+      "index": 9,
+      "label": "\"400000\" yaz",
+      "status": "pass"
+    }
+  ]
+}

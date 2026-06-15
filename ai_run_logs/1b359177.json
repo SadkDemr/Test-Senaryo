@@ -1,0 +1,39 @@
+{
+  "run_id": "1b359177",
+  "scenario_name": "Adsız Senaryo",
+  "scenario_folder": "",
+  "platform": "web",
+  "started_at": "2026-06-14T21:18:24.878708",
+  "ended_at": "2026-06-14T21:18:39.727612",
+  "exit_code": 1,
+  "total_steps": 5,
+  "passed": 3,
+  "failed": 0,
+  "steps": [
+    {
+      "index": 0,
+      "label": "Aşağı kaydırılır",
+      "status": "pass"
+    },
+    {
+      "index": 1,
+      "label": "\"Finansman Hesapla\" tıklanır",
+      "status": "pass"
+    },
+    {
+      "index": 2,
+      "label": "\"Finansman Türü\" görünmeli",
+      "status": "pass"
+    },
+    {
+      "index": 3,
+      "label": "\"İhtiyaç Finansmanı\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 4,
+      "label": "\"Taşıt Finansmanı 2.El\" Tıklanır",
+      "status": "unknown"
+    }
+  ]
+}
