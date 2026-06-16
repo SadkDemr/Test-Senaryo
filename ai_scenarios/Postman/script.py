@@ -7,20 +7,64 @@ _AI_CONFIG_PATH = r"C:\Users\Sadik Demir\Documents\GitHub\OtomasyoToolFastApi\ba
 _WINDOW_TITLE   = ""
 _VARS = {}  # adımlar arası değişken havuzu
 
+import os as _os_s, sys as _sys_s
+_STOP_FILE = _os_s.environ.get("_AI_STOP_FILE", "")
+def _check_stop():
+    if _STOP_FILE and _os_s.path.exists(_STOP_FILE):
+        try: _os_s.unlink(_STOP_FILE)
+        except: pass
+        raise SystemExit(0)
+
 
 import base64 as _ib64, tempfile as _itmp, os as _ios, time as _itime
 
+def _get_window_region():
+    """_WINDOW_TITLE penceresinin ekran bölgesini (x,y,w,h) döndürür. Bulamazsa None."""
+    try:
+        _wt = _WINDOW_TITLE  # generated script globals'ta tanımlı
+    except NameError:
+        return None
+    if not _wt:
+        return None
+    # pywinauto ile pencere dikdörtgeni al
+    try:
+        import pywinauto as _pwr
+        _app = _pwr.Application(backend="uia").connect(title_re=f".*{_wt}.*", timeout=2)
+        _rect = _app.top_window().rectangle()
+        _x, _y = max(0, _rect.left), max(0, _rect.top)
+        _w, _h = _rect.width(), _rect.height()
+        if _w > 10 and _h > 10:
+            return (_x, _y, _w, _h)
+    except Exception:
+        pass
+    # win32gui fallback
+    try:
+        import win32gui as _wg
+        def _cb(h, acc):
+            if _wt.lower() in _wg.GetWindowText(h).lower():
+                acc.append(h)
+        _hs = []; _wg.EnumWindows(_cb, _hs)
+        if _hs:
+            _x1,_y1,_x2,_y2 = _wg.GetWindowRect(_hs[0])
+            _w, _h = _x2-_x1, _y2-_y1
+            if _w > 10 and _h > 10:
+                return (max(0,_x1), max(0,_y1), _w, _h)
+    except Exception:
+        pass
+    return None
+
 def _find_b64_on_screen(b64_data, threshold=0.80, timeout=10):
-    """Base64 görseli ekranda OpenCV ile ara. (x,y) veya None döner."""
+    """Base64 görseli pencere bölgesinde (yoksa tüm ekranda) OpenCV ile ara."""
     _tmp_path = _ios.path.join(_itmp.gettempdir(), f"_img_find_{id(b64_data)}.png")
     try:
         with open(_tmp_path, "wb") as _f:
             _f.write(_ib64.b64decode(b64_data))
+        _region = _get_window_region()
         _start = _itime.time()
         while _itime.time() - _start < timeout:
             _elapsed = _itime.time() - _start
             _conf = max(0.65, threshold - (_elapsed / timeout) * 0.20)
-            _coords = _find_image_on_screen(_tmp_path, threshold=_conf)
+            _coords = _find_image_on_screen(_tmp_path, threshold=_conf, region=_region)
             if _coords:
                 return _coords
             _itime.sleep(0.3)
@@ -29,12 +73,14 @@ def _find_b64_on_screen(b64_data, threshold=0.80, timeout=10):
         try: _ios.unlink(_tmp_path)
         except Exception: pass
 
-def _find_image_on_screen(target_path, threshold=0.80):
-    """OpenCV multi-scale template matching. (x,y) veya None döner."""
+def _find_image_on_screen(target_path, threshold=0.80, region=None):
+    """OpenCV multi-scale template matching. region=(x,y,w,h) ile kısıtlı arama yapar."""
     try:
         import cv2 as _cv2, numpy as _np
-        from PIL import Image as _PILImg2
-        _screen = _np.array(__import__("pyautogui").screenshot())
+        import pyautogui as _pag_sc
+        _screenshot = _pag_sc.screenshot(region=region) if region else _pag_sc.screenshot()
+        _screen      = _np.array(_screenshot)
+        _ox, _oy     = (region[0], region[1]) if region else (0, 0)
         _screen_bgr  = _cv2.cvtColor(_screen, _cv2.COLOR_RGB2BGR)
         _screen_gray = _cv2.cvtColor(_screen_bgr, _cv2.COLOR_BGR2GRAY)
         _screen_gray = _cv2.GaussianBlur(_screen_gray, (3,3), 0)
@@ -47,16 +93,18 @@ def _find_image_on_screen(target_path, threshold=0.80):
         for _sc in _np.linspace(0.7, 1.3, 13):
             _rw, _rh = int(_w*_sc), int(_h*_sc)
             if _rw < 10 or _rh < 10: continue
+            if _rw > _screen_gray.shape[1] or _rh > _screen_gray.shape[0]: continue
             _res = _cv2.matchTemplate(_screen_gray, _cv2.resize(_tmpl_gray,(_rw,_rh)), _cv2.TM_CCOEFF_NORMED)
             _, _val, _, _loc = _cv2.minMaxLoc(_res)
             if _val > _best_val: _best_val = _val; _best = (_loc, _rw, _rh)
         if _best_val >= threshold and _best:
             _loc, _rw, _rh = _best
-            return (_loc[0] + _rw//2, _loc[1] + _rh//2)
+            return (_loc[0] + _rw//2 + _ox, _loc[1] + _rh//2 + _oy)
     except ImportError:
         try:
             import pyautogui as _pag2
-            _loc2 = _pag2.locateOnScreen(target_path, grayscale=True, confidence=min(0.8, threshold))
+            _loc2 = _pag2.locateOnScreen(target_path, grayscale=True,
+                                          confidence=min(0.8, threshold), region=region)
             if _loc2: return (_pag2.center(_loc2).x, _pag2.center(_loc2).y)
         except Exception: pass
     except Exception: pass
@@ -71,7 +119,7 @@ def _do_robust_click(x, y, button="left"):
     _pag3.mouseUp(button=button)
 
 def _find_b64_on_screen_web(b64_data, threshold=0.80, timeout=10):
-    """Web için: görseli ekranda (tarayıcı penceresinde) ara."""
+    """Web için: görseli ekranda ara (pencere kısıtlaması olmadan)."""
     return _find_b64_on_screen(b64_data, threshold=threshold, timeout=timeout)
 
 
@@ -391,7 +439,7 @@ def _safe_wait_for_desktop(target, timeout=10):
 
 
 def _safe_assert_desktop(target):
-    """Ekranda element / metin doğrula."""
+    """Ekranda element / metin doğrula. Bulamazsa AssertionError fırlatır."""
     print(f"[ASSERT] '{target}' kontrol ediliyor...")
 
     # pywinauto
@@ -405,10 +453,11 @@ def _safe_assert_desktop(target):
         except Exception:
             pass
 
-    # OCR
+    # OCR — sadece uygulama penceresiyle sınırlı
     if _TESS_OK:
         try:
-            shot = _pag.screenshot()
+            _region = _get_window_region()
+            shot = _pag.screenshot(region=_region) if _region else _pag.screenshot()
             _txt = _tess.image_to_string(shot, lang="tur+eng")
             if target.lower() in _txt.lower():
                 print(f"[OK] OCR: '{target}'"); return
@@ -420,7 +469,7 @@ def _safe_assert_desktop(target):
     if _vx and _vy:
         print(f"[OK] Vision: '{target}'"); return
 
-    print(f"[WARN] '{target}' ekranda bulunamadı — adım geçiliyor")
+    raise AssertionError(f"[FAIL] '{target}' ekranda bulunamadi")
 
 
 # ── Uygulama başlat ─────────────────────────────────────────
@@ -429,28 +478,53 @@ _app_proc = _dsproc.Popen([r"C:\Users\Sadik Demir\AppData\Local\Postman\Postman.
 time.sleep(2)
 
 try:
+    _check_stop()
     print('STEP_START:0')
-    # 3 saniye bekle
-    time.sleep(3)
-    print('STEP_DONE:0')
+    try:
+        # 3 saniye bekle
+        time.sleep(3)
+        print('STEP_DONE:0')
+    except Exception as _e_0:
+        print(f'[FAIL] {_e_0}')
+        print('STEP_FAIL:0')
+        raise
 
+    _check_stop()
     print('STEP_START:1')
-    # "Ctrl+T" bas
-    _pag.hotkey('ctrl', 't')
-    time.sleep(0.3)
-    print('STEP_DONE:1')
+    try:
+        # "Ctrl+T" bas
+        _pag.hotkey('ctrl', 't')
+        time.sleep(0.3)
+        print('STEP_DONE:1')
+    except Exception as _e_1:
+        print(f'[FAIL] {_e_1}')
+        print('STEP_FAIL:1')
+        raise
 
+    _check_stop()
     print('STEP_START:2')
-    # 2 saniye bekle
-    time.sleep(2)
-    print('STEP_DONE:2')
+    try:
+        # 2 saniye bekle
+        time.sleep(2)
+        print('STEP_DONE:2')
+    except Exception as _e_2:
+        print(f'[FAIL] {_e_2}')
+        print('STEP_FAIL:2')
+        raise
 
+    _check_stop()
     print('STEP_START:3')
-    # "Enter URL or paste text" tıkla
-    _pag.press("enter")
-    time.sleep(0.3)
-    print('STEP_DONE:3')
+    try:
+        # "Enter URL or paste text" tıkla
+        _pag.press("enter")
+        time.sleep(0.3)
+        print('STEP_DONE:3')
+    except Exception as _e_3:
+        print(f'[FAIL] {_e_3}')
+        print('STEP_FAIL:3')
+        raise
 
+    _check_stop()
     # [SQL] SQL 5
     print('STEP_START:4')
     try:
@@ -470,6 +544,7 @@ try:
         print('STEP_FAIL:4')
         raise
 
+    _check_stop()
     # [API] GET  https://jsonplaceholder.typicode.com/posts/1 — API 6
     print('STEP_START:5')
     try:
@@ -498,16 +573,29 @@ try:
         print('STEP_FAIL:5')
         raise
 
+    _check_stop()
     print('STEP_START:6')
-    # {{ agirlik }} yaz
-    _safe_type_desktop(str(_VARS.get('agirlik', '')))
-    print('STEP_DONE:6')
+    try:
+        # {{ agirlik }} yaz
+        _safe_type_desktop(str(_VARS.get('agirlik', '')))
+        print('STEP_DONE:6')
+    except Exception as _e_6:
+        print(f'[FAIL] {_e_6}')
+        print('STEP_FAIL:6')
+        raise
 
+    _check_stop()
     print('STEP_START:7')
-    # {{ postId }} yaz
-    _safe_type_desktop(str(_VARS.get('postId', '')))
-    print('STEP_DONE:7')
+    try:
+        # {{ postId }} yaz
+        _safe_type_desktop(str(_VARS.get('postId', '')))
+        print('STEP_DONE:7')
+    except Exception as _e_7:
+        print(f'[FAIL] {_e_7}')
+        print('STEP_FAIL:7')
+        raise
 
+    _check_stop()
     # [GÖRSEL TIKLAMA] Görsel element
     print('STEP_START:8')
     try:
@@ -521,6 +609,22 @@ try:
     except Exception as _e_8:
         print(f'[FAIL] {_e_8}')
         print('STEP_FAIL:8')
+        raise
+
+    _check_stop()
+    # [GÖRSEL TIKLAMA] Görsel element
+    print('STEP_START:9')
+    try:
+        _img_b64_9 = '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'
+        _coords_9 = _find_b64_on_screen(_img_b64_9, timeout=10)
+        if not _coords_9: raise Exception('Gorsel bulunamadi: Görsel element')
+        _do_robust_click(_coords_9[0], _coords_9[1])
+        print('[OK] Gorsel tiklandi: Görsel element')
+        time.sleep(0.5)
+        print('STEP_DONE:9')
+    except Exception as _e_9:
+        print(f'[FAIL] {_e_9}')
+        print('STEP_FAIL:9')
         raise
 
 except Exception as e:
