@@ -1,0 +1,69 @@
+{
+  "run_id": "d8a654a1",
+  "scenario_name": "Hesap Açma",
+  "scenario_folder": "Hesap_Açma",
+  "platform": "mobile",
+  "started_at": "2026-06-16T07:09:06.533649",
+  "ended_at": "2026-06-16T07:09:06.634540",
+  "exit_code": 1,
+  "total_steps": 11,
+  "passed": 0,
+  "failed": 0,
+  "steps": [
+    {
+      "index": 0,
+      "label": "\"Ortam\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 1,
+      "label": "\"Prep\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 2,
+      "label": "\"Devam\" Tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 3,
+      "label": "5 saniye beklenir",
+      "status": "unknown"
+    },
+    {
+      "index": 4,
+      "label": "\"Giriş Yap\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 5,
+      "label": "Şifre Giriniz alanına \"121212\" yazılır",
+      "status": "unknown"
+    },
+    {
+      "index": 6,
+      "label": "5 saniye bekle",
+      "status": "unknown"
+    },
+    {
+      "index": 7,
+      "label": "\"Tamamla Kazan\" yazısının göründüğünü doğrula",
+      "status": "unknown"
+    },
+    {
+      "index": 8,
+      "label": "\"Hesap/Kart\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 9,
+      "label": "\"Hesaplar\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 10,
+      "label": "\"//*[@resource-id='com.vakifkatilim.mobil.test:id/fabAddAccount']\" tıklanır",
+      "status": "unknown"
+    }
+  ]
+}

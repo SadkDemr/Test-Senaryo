@@ -1,0 +1,54 @@
+{
+  "run_id": "39391344",
+  "scenario_name": "Hesap Açma",
+  "scenario_folder": "Hesap_Açma",
+  "platform": "mobile",
+  "started_at": "2026-06-16T06:50:06.876970",
+  "ended_at": "2026-06-16T06:50:54.880103",
+  "exit_code": 0,
+  "total_steps": 8,
+  "passed": 8,
+  "failed": 0,
+  "steps": [
+    {
+      "index": 0,
+      "label": "\"Ortam\" tıklanır",
+      "status": "pass"
+    },
+    {
+      "index": 1,
+      "label": "\"Prep\" tıklanır",
+      "status": "pass"
+    },
+    {
+      "index": 2,
+      "label": "\"Devam\" Tıklanır",
+      "status": "pass"
+    },
+    {
+      "index": 3,
+      "label": "5 saniye beklenir",
+      "status": "pass"
+    },
+    {
+      "index": 4,
+      "label": "\"Giriş Yap\" tıklanır",
+      "status": "pass"
+    },
+    {
+      "index": 5,
+      "label": "Şifre Giriniz alanına \"121212\" yazılır",
+      "status": "pass"
+    },
+    {
+      "index": 6,
+      "label": "\"Tamamla Kazan\" yazısının göründüğünü doğrula",
+      "status": "pass"
+    },
+    {
+      "index": 7,
+      "label": "\"Hesap/Kart\" tıklanır",
+      "status": "pass"
+    }
+  ]
+}

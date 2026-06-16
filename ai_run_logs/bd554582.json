@@ -1,0 +1,54 @@
+{
+  "run_id": "bd554582",
+  "scenario_name": "Hesap Açma",
+  "scenario_folder": "Hesap_Açma",
+  "platform": "mobile",
+  "started_at": "2026-06-16T06:44:30.952407",
+  "ended_at": "2026-06-16T06:44:42.108396",
+  "exit_code": 1,
+  "total_steps": 8,
+  "passed": 0,
+  "failed": 0,
+  "steps": [
+    {
+      "index": 0,
+      "label": "\"Ortam\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 1,
+      "label": "\"Prep\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 2,
+      "label": "\"Devam\" Tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 3,
+      "label": "5 saniye beklenir",
+      "status": "unknown"
+    },
+    {
+      "index": 4,
+      "label": "\"Giriş Yap\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 5,
+      "label": "Şifre Giriniz alanına \"121212\" yazılır",
+      "status": "unknown"
+    },
+    {
+      "index": 6,
+      "label": "\"Tamamla Kazan\" yazısının göründüğünü doğrula",
+      "status": "unknown"
+    },
+    {
+      "index": 7,
+      "label": "\"Hesap/Kart\" tıklanır",
+      "status": "unknown"
+    }
+  ]
+}

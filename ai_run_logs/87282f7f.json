@@ -1,0 +1,169 @@
+{
+  "run_id": "87282f7f",
+  "scenario_name": "Hesap Açma",
+  "scenario_folder": "Hesap_Açma",
+  "platform": "mobile",
+  "started_at": "2026-06-16T07:21:31.103835",
+  "ended_at": "2026-06-16T07:22:22.371826",
+  "exit_code": 1,
+  "total_steps": 31,
+  "passed": 11,
+  "failed": 1,
+  "steps": [
+    {
+      "index": 0,
+      "label": "\"Ortam\" tıklanır",
+      "status": "pass"
+    },
+    {
+      "index": 1,
+      "label": "\"Prep\" tıklanır",
+      "status": "pass"
+    },
+    {
+      "index": 2,
+      "label": "\"Devam\" Tıklanır",
+      "status": "pass"
+    },
+    {
+      "index": 3,
+      "label": "5 saniye beklenir",
+      "status": "pass"
+    },
+    {
+      "index": 4,
+      "label": "\"Giriş Yap\" tıklanır",
+      "status": "pass"
+    },
+    {
+      "index": 5,
+      "label": "Şifre Giriniz alanına \"121212\" yazılır",
+      "status": "pass"
+    },
+    {
+      "index": 6,
+      "label": "5 saniye bekle",
+      "status": "pass"
+    },
+    {
+      "index": 7,
+      "label": "\"Tamamla Kazan\" yazısının göründüğünü doğrula",
+      "status": "pass"
+    },
+    {
+      "index": 8,
+      "label": "\"Hesap/Kart\" tıklanır",
+      "status": "pass"
+    },
+    {
+      "index": 9,
+      "label": "\"Hesaplar\" tıklanır",
+      "status": "pass"
+    },
+    {
+      "index": 10,
+      "label": "\"//*[@resource-id='com.vakifkatilim.mobil.test:id/fabAddAccount']\" tıklanır",
+      "status": "pass"
+    },
+    {
+      "index": 11,
+      "label": "\"Hesap türü\" tıklanır",
+      "status": "fail"
+    },
+    {
+      "index": 12,
+      "label": "\"Cari Hesaplar\" görünmeli",
+      "status": "unknown"
+    },
+    {
+      "index": 13,
+      "label": "\"Cari Hesap\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 14,
+      "label": "\"Döviz Cinsi\" görünmeli",
+      "status": "unknown"
+    },
+    {
+      "index": 15,
+      "label": "\"Döviz Cinsi\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 16,
+      "label": "\"Türk Lirası\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 17,
+      "label": "\"Devam Et\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 18,
+      "label": "\"Hesap Adı\" görünmeli",
+      "status": "unknown"
+    },
+    {
+      "index": 19,
+      "label": "\"Giriniz\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 20,
+      "label": "\"Test\" yaz",
+      "status": "unknown"
+    },
+    {
+      "index": 21,
+      "label": "\"//android.widget.ToggleButton[@resource-id='com.vakifkatilim.mobil.test:id/switchReadAndConfrim']\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 22,
+      "label": "\"Özel Cari Hesap Bilgilendirme Formu\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 23,
+      "label": "\"Sözleşmeyi sesli dinleyip, onayla\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 24,
+      "label": "\"Dinledim, onaylıyorum.\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 25,
+      "label": "\"Okudum, onaylıyorum\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 26,
+      "label": "\"Devam Et\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 27,
+      "label": "\"Hesap Numarası\" görünmeli",
+      "status": "unknown"
+    },
+    {
+      "index": 28,
+      "label": "\"Onayla\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 29,
+      "label": "\"Hesabınız oluşturuldu.\" görünmeli",
+      "status": "unknown"
+    },
+    {
+      "index": 30,
+      "label": "\"Tamam\" tıklanır",
+      "status": "unknown"
+    }
+  ]
+}

@@ -115,6 +115,23 @@ def _safe_click(driver, text, key_text=None):
     5. Vision fallback (ekran görüntüsü → AI → koordinat)
     key_text: "Toplam Varlıklarım kartında yer alan favori fonlarım" → "favori fonlarım"
     """
+    # Ham XPath/resource-id ise direkt kullan, scroll/vision'a gerek yok
+    if text.startswith("//") or text.startswith("//*"):
+        try:
+            driver.find_element(AppiumBy.XPATH, text).click()
+            print(f"[OK] XPath tıklandı: {text}")
+            return
+        except Exception as _xe:
+            raise Exception(f"XPath bulunamadı: {text} → {_xe}")
+    if text.startswith("id/") or text.startswith("@id/"):
+        _rid = text.lstrip("@")
+        try:
+            driver.find_element(AppiumBy.ID, _rid).click()
+            print(f"[OK] resource-id tıklandı: {_rid}")
+            return
+        except Exception as _xe:
+            raise Exception(f"resource-id bulunamadı: {_rid} → {_xe}")
+
     _all_texts = [t for t in [text, key_text] if t]
 
     def _try(t):
@@ -481,8 +498,6 @@ options.app_package            = "com.vakifkatilim.mobil.test"
 options.app_activity           = "boa.android.mobilebranch.v2.ui.splash.ACSplash"
 options.no_reset               = True
 options.auto_grant_permissions = True
-options.set_capability('skipServerInstallation', True)   # UiAutomator2 APK zaten kuruluysa yeniden yükleme
-options.set_capability('skipDeviceInitialization', True) # Cihaz init adımlarını atla
 
 print("Appium baglaniyor: http://localhost:4723")
 driver = webdriver.Remote("http://localhost:4723", options=options)
@@ -583,8 +598,8 @@ try:
     _check_stop()
     print('STEP_START:6')
     try:
-        # "Tamamla Kazan" yazısının göründüğünü doğrula
-        _safe_assert(driver, 'Tamamla Kazan')
+        # 3 saniye bekle
+        time.sleep(3)
         print('STEP_DONE:6')
     except Exception as _e_6:
         print(f'[FAIL] {_e_6}')
@@ -594,13 +609,261 @@ try:
     _check_stop()
     print('STEP_START:7')
     try:
-        # "Hesap/Kart" tıklanır
-        _safe_click(driver, 'Hesap/Kart')
-        time.sleep(0.8)
+        # "Tamamla Kazan" yazısının göründüğünü doğrula
+        _safe_assert(driver, 'Tamamla Kazan')
         print('STEP_DONE:7')
     except Exception as _e_7:
         print(f'[FAIL] {_e_7}')
         print('STEP_FAIL:7')
+        raise
+
+    _check_stop()
+    print('STEP_START:8')
+    try:
+        # "Hesap/Kart" tıklanır
+        _safe_click(driver, 'Hesap/Kart')
+        time.sleep(0.8)
+        print('STEP_DONE:8')
+    except Exception as _e_8:
+        print(f'[FAIL] {_e_8}')
+        print('STEP_FAIL:8')
+        raise
+
+    _check_stop()
+    print('STEP_START:9')
+    try:
+        # "Hesaplar" tıklanır
+        _safe_click(driver, 'Hesaplar')
+        time.sleep(0.8)
+        print('STEP_DONE:9')
+    except Exception as _e_9:
+        print(f'[FAIL] {_e_9}')
+        print('STEP_FAIL:9')
+        raise
+
+    _check_stop()
+    print('STEP_START:10')
+    try:
+        # "//*[@resource-id='com.vakifkatilim.mobil.test:id/fabAddAccount']" tıklanır
+        _safe_click(driver, "//*[@resource-id='com.vakifkatilim.mobil.test:id/fabAddAccount']")
+        time.sleep(0.8)
+        print('STEP_DONE:10')
+    except Exception as _e_10:
+        print(f'[FAIL] {_e_10}')
+        print('STEP_FAIL:10')
+        raise
+
+    _check_stop()
+    print('STEP_START:11')
+    try:
+        # "Seçiniz" tıklanır
+        _safe_click(driver, 'Seçiniz')
+        time.sleep(0.8)
+        print('STEP_DONE:11')
+    except Exception as _e_11:
+        print(f'[FAIL] {_e_11}')
+        print('STEP_FAIL:11')
+        raise
+
+    _check_stop()
+    print('STEP_START:12')
+    try:
+        # "Cari Hesaplar" yazısının göründüğünü doğrula
+        _safe_assert(driver, 'Cari Hesaplar')
+        print('STEP_DONE:12')
+    except Exception as _e_12:
+        print(f'[FAIL] {_e_12}')
+        print('STEP_FAIL:12')
+        raise
+
+    _check_stop()
+    print('STEP_START:13')
+    try:
+        # "Cari Hesap" tıklanır
+        _safe_click(driver, 'Cari Hesap')
+        time.sleep(0.8)
+        print('STEP_DONE:13')
+    except Exception as _e_13:
+        print(f'[FAIL] {_e_13}')
+        print('STEP_FAIL:13')
+        raise
+
+    _check_stop()
+    print('STEP_START:14')
+    try:
+        # "Döviz Cinsi" yazısının göründüğünü doğrula
+        _safe_assert(driver, 'Döviz Cinsi')
+        print('STEP_DONE:14')
+    except Exception as _e_14:
+        print(f'[FAIL] {_e_14}')
+        print('STEP_FAIL:14')
+        raise
+
+    _check_stop()
+    print('STEP_START:15')
+    try:
+        # "Döviz Cinsi" tıklanır
+        _safe_click(driver, 'Döviz Cinsi')
+        time.sleep(0.8)
+        print('STEP_DONE:15')
+    except Exception as _e_15:
+        print(f'[FAIL] {_e_15}')
+        print('STEP_FAIL:15')
+        raise
+
+    _check_stop()
+    print('STEP_START:16')
+    try:
+        # "Türk Lirası" tıklanır
+        _safe_click(driver, 'Türk Lirası')
+        time.sleep(0.8)
+        print('STEP_DONE:16')
+    except Exception as _e_16:
+        print(f'[FAIL] {_e_16}')
+        print('STEP_FAIL:16')
+        raise
+
+    _check_stop()
+    print('STEP_START:17')
+    try:
+        # 2 saniye beklenir
+        time.sleep(2)
+        print('STEP_DONE:17')
+    except Exception as _e_17:
+        print(f'[FAIL] {_e_17}')
+        print('STEP_FAIL:17')
+        raise
+
+    _check_stop()
+    print('STEP_START:18')
+    try:
+        # "//android.view.View[@resource-id='com.vakifkatilim.mobil.test:id/btnNext']" tıklanır
+        _safe_click(driver, "//android.view.View[@resource-id='com.vakifkatilim.mobil.test:id/btnNext']")
+        time.sleep(0.8)
+        print('STEP_DONE:18')
+    except Exception as _e_18:
+        print(f'[FAIL] {_e_18}')
+        print('STEP_FAIL:18')
+        raise
+
+    _check_stop()
+    print('STEP_START:19')
+    try:
+        # "Hesap Adı" yazısının göründüğünü doğrula
+        _safe_assert(driver, 'Hesap Adı')
+        print('STEP_DONE:19')
+    except Exception as _e_19:
+        print(f'[FAIL] {_e_19}')
+        print('STEP_FAIL:19')
+        raise
+
+    _check_stop()
+    print('STEP_START:20')
+    try:
+        # "Giriniz" tıklanır
+        _safe_click(driver, 'Giriniz')
+        time.sleep(0.8)
+        print('STEP_DONE:20')
+    except Exception as _e_20:
+        print(f'[FAIL] {_e_20}')
+        print('STEP_FAIL:20')
+        raise
+
+    _check_stop()
+    print('STEP_START:21')
+    try:
+        # "Test" yaz
+        _safe_input(driver, '//android.widget.EditText[1]', 'Test')
+        time.sleep(0.5)
+        print('STEP_DONE:21')
+    except Exception as _e_21:
+        print(f'[FAIL] {_e_21}')
+        print('STEP_FAIL:21')
+        raise
+
+    _check_stop()
+    print('STEP_START:22')
+    try:
+        # klavye kapat
+        try:
+            driver.hide_keyboard()
+        except Exception:
+            driver.back()
+        time.sleep(0.5)
+        print('STEP_DONE:22')
+    except Exception as _e_22:
+        print(f'[FAIL] {_e_22}')
+        print('STEP_FAIL:22')
+        raise
+
+    _check_stop()
+    print('STEP_START:23')
+    try:
+        # "//android.widget.ToggleButton[@resource-id='com.vakifkatilim.mobil.test:id/switchReadAndConfirm']" tıklanır
+        _safe_click(driver, "//android.widget.ToggleButton[@resource-id='com.vakifkatilim.mobil.test:id/switchReadAndConfirm']")
+        time.sleep(0.8)
+        print('STEP_DONE:23')
+    except Exception as _e_23:
+        print(f'[FAIL] {_e_23}')
+        print('STEP_FAIL:23')
+        raise
+
+    _check_stop()
+    print('STEP_START:24')
+    try:
+        # "//android.view.View[@resource-id='com.vakifkatilim.mobil.test:id/btnNext']" tıklanır
+        _safe_click(driver, "//android.view.View[@resource-id='com.vakifkatilim.mobil.test:id/btnNext']")
+        time.sleep(0.8)
+        print('STEP_DONE:24')
+    except Exception as _e_24:
+        print(f'[FAIL] {_e_24}')
+        print('STEP_FAIL:24')
+        raise
+
+    _check_stop()
+    print('STEP_START:25')
+    try:
+        # "Hesap Numarası" yazısının göründüğünü doğrula
+        _safe_assert(driver, 'Hesap Numarası')
+        print('STEP_DONE:25')
+    except Exception as _e_25:
+        print(f'[FAIL] {_e_25}')
+        print('STEP_FAIL:25')
+        raise
+
+    _check_stop()
+    print('STEP_START:26')
+    try:
+        # "//*[@resource-id='com.vakifkatilim.mobil.test:id/btnConfirm']" tıklanır
+        _safe_click(driver, "//*[@resource-id='com.vakifkatilim.mobil.test:id/btnConfirm']")
+        time.sleep(0.8)
+        print('STEP_DONE:26')
+    except Exception as _e_26:
+        print(f'[FAIL] {_e_26}')
+        print('STEP_FAIL:26')
+        raise
+
+    _check_stop()
+    print('STEP_START:27')
+    try:
+        # "Hesabınız oluşturuldu." yazısının göründüğünü doğrula
+        _safe_assert(driver, 'Hesabınız oluşturuldu.')
+        print('STEP_DONE:27')
+    except Exception as _e_27:
+        print(f'[FAIL] {_e_27}')
+        print('STEP_FAIL:27')
+        raise
+
+    _check_stop()
+    print('STEP_START:28')
+    try:
+        # "Tamam" tıklanır
+        _safe_click(driver, 'Tamam')
+        time.sleep(0.8)
+        print('STEP_DONE:28')
+    except Exception as _e_28:
+        print(f'[FAIL] {_e_28}')
+        print('STEP_FAIL:28')
         raise
 
 except Exception as e:
