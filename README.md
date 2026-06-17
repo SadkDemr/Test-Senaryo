@@ -1,8 +1,21 @@
-(venv) C:\OtomasyoTool\backend>py -3.11 --version
-Python 3.11.9
+C:\OtomasyoTool\backend\venv\Scripts\python.exe --version
 
-(venv) C:\OtomasyoTool\backend>pip --version
-pip 26.1.2 from C:\Users\kftte\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pip (python 3.14)
+  Eğer Python 3.11.9 çıkarsa sorun aktivasyonda. Şunu dene — deactivate edip CMD'de yeniden aktive et:
 
-(venv) C:\OtomasyoTool\backend>python --version
-Python 3.14.6
+  deactivate
+  C:\OtomasyoTool\backend\venv\Scripts\activate.bat
+  python --version
+
+  Hâlâ 3.14 çıkarsa venv'i tamamen silip yeniden oluştur, bu sefer PowerShell değil CMD'de:
+
+  deactivate
+  rmdir /s /q C:\OtomasyoTool\backend\venv
+  py -3.11 -m venv C:\OtomasyoTool\backend\venv
+  C:\OtomasyoTool\backend\venv\Scripts\activate.bat
+  python --version
+
+  Python 3.11.9 çıkınca paketleri kur:
+
+  pip install -r C:\OtomasyoTool\backend\requirements.txt
+
+  C:\OtomasyoTool\backend\venv\Scripts\python.exe --version çıktısını paylaş.
