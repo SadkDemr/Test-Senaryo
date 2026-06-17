@@ -1,29 +1,22 @@
-[DESKTOP] pytesseract kullanılamıyor — OCR devre dışı
-[DESKTOP] pywinauto kullanılamıyor — pencere kontrolü devre dışı
-Başlatılıyor: C:\Users\kftte\OneDrive\Desktop\bin\BOA.UI.Container.exe k.ah200209
+(venv) C:\OtomasyoTool\backend>python -c "import pywinauto; print('OK')"
 Traceback (most recent call last):
-File "C:\Users\kftte\AppData\Local\Temp\ai_test_1mnq2qic.py", line 464, in <module>
-_dsproc.Popen([r"C:\Users\kftte\OneDrive\Desktop\bin\BOA.UI.Container.exe k.ah200209"])
-~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-File "C:\Users\kftte\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 1039, in __init__
-self._execute_child(args, executable, preexec_fn, close_fds,
-~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-pass_fds, cwd, env,
-^^^^^^^^^^^^^^^^^^^
-...<5 lines>...
-gid, gids, uid, umask,
-^^^^^^^^^^^^^^^^^^^^^^
-start_new_session, process_group)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-File "C:\Users\kftte\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 1553, in _execute_child
-hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
-~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
-# no special security
-^^^^^^^^^^^^^^^^^^^^^
-...<4 lines>...
-cwd,
-^^^^
-startupinfo)
-^^^^^^^^^^^^
-FileNotFoundError: [WinError 2] Sistem belirtilen dosyayı bulamıyor
-data: Kosum hata ile bitti. (exit: 1)
+  File "<string>", line 1, in <module>
+    import pywinauto; print('OK')
+    ^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'pywinauto'
+
+(venv) C:\OtomasyoTool\backend>pip install pinwinauto comtyes --prefer-binary --timeout 120
+ERROR: Could not find a version that satisfies the requirement pinwinauto (from versions: none)
+ERROR: No matching distribution found for pinwinauto
+
+(venv) C:\OtomasyoTool\backend>pip install pywinauto comtyes --prefer-binary --timeout 120
+Collecting pywinauto
+  Downloading pywinauto-0.6.9-py2.py3-none-any.whl.metadata (2.0 kB)
+ERROR: Could not find a version that satisfies the requirement comtyes (from versions: none)
+ERROR: No matching distribution found for comtyes
+
+(venv) C:\OtomasyoTool\backend>pip install pywinauto comtyes --prefer-binary --timeout 120
+Collecting pywinauto
+  Using cached pywinauto-0.6.9-py2.py3-none-any.whl.metadata (2.0 kB)
+ERROR: Could not find a version that satisfies the requirement comtyes (from versions: none)
+ERROR: No matching distribution found for comtyes
