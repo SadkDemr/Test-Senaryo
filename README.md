@@ -1,7 +1,9 @@
-PS C:\OtomasyoTool> $file = "C:\Users\kftte\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pywinauto\base_wrapper.py" (Get-Content $file -Raw) -replace 'import win32ui except \(ImportError, OSError\): win32ui = None', "try:`n import win32ui`nexcept (ImportError, OSError):`n win32ui = None" | Set-Content $file -Encoding utf8
-At line:1 char:110
-+ ... oncore-3.14-64\Lib\site-packages\pywinauto\base_wrapper.py" (Get-Cont ...
-+                                                                 ~
-Unexpected token '(' in expression or statement.
-    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
-    + FullyQualifiedErrorId : UnexpectedToken
+  Satır 1:
+  $file = "C:\Users\kftte\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pywinauto\base_wrapper.py"
+
+  Satır 2:
+  (Get-Content $file -Raw) -replace 'import win32ui except \(ImportError, OSError\): win32ui = None', "try:`n    import win32ui`nexcept (ImportError, OSError):`n    win32ui = None" | Set-Content $file
+  -Encoding utf8
+
+  Sonra test et:
+  python -c "import pywinauto; print('OK')"
