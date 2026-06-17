@@ -1,5 +1,6 @@
-(venv) C:\OtomasyoTool\backend>pip install pywin32 --prefer-binary --timeout 120
-Requirement already satisfied: pywin32 in C:\Users\kftte\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages (312)
+  pip install pywin32 pywinauto pyautogui pyperclip --prefer-binary --force-reinstall
 
-(venv) C:\OtomasyoTool\backend>python -m pywin32_postinstall -install
-C:\Users\kftte\AppData\Local\Python\pythoncore-3.14-64\python.exe: No module named pywin32_postinstall
+  --force-reinstall olmadan pip "zaten var" deyip sistem Python'undaki paketi görüyor, venv'e kurmuyor.
+
+  Kurulduktan sonra test et:
+  python -c "import pywinauto; import pyautogui; import pyperclip; print('OK')"
