@@ -1,23 +1,32 @@
-PS C:\OtomasyoTool> $file = "C:\Users\kftte\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pywinauto\base_wrapper.py"
-PS C:\OtomasyoTool> (Get-Content $file -Raw) -replace 'import win32ui except (ImportError, OSError): win32ui = None', "try:n    import win32uinexcept (ImportError, OSError):`n win32ui = None" | Set-Content $file -Encoding utf8
-PS C:\OtomasyoTool> python -c "import pywinauto; print('OK')"
-Traceback (most recent call last):
-  File "<string>", line 1, in <module>
-    import pywinauto; print('OK')
-    ^^^^^^^^^^^^^^^^
-  File "C:\Users\kftte\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pywinauto\__init__.py", line 89, in <module>
-    from . import findwindows
-  File "C:\Users\kftte\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pywinauto\findwindows.py", line 42, in <module>
-    from . import controls
-  File "C:\Users\kftte\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pywinauto\controls\__init__.py", line 36, in <module>
-    from . import uiawrapper # register "uia" back-end (at the end of uiawrapper module)
-    ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\kftte\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pywinauto\controls\uiawrapper.py", line
- 42, in <module>
-    from .. import backend
-  File "C:\Users\kftte\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pywinauto\backend.py", line 35, in <module>
-    from .base_wrapper import BaseWrapper
-  File "C:\Users\kftte\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pywinauto\base_wrapper.py", line 46
-    except (ImportError, OSError):
-                                  ^
-IndentationError: unindent does not match any outer indentation level
+  Adım 1 — Python 3.11 İndir
+
+  Tarayıcıdan şu adreste "Windows installer (64-bit)" indir:
+  https://www.python.org/downloads/release/python-3119/
+  Kurulumda "Add Python to PATH" kutusunu işaretle, "Install Now" de.
+
+  ---
+  Adım 2 — Kurulumu Doğrula
+
+  py -3.11 --version
+  Python 3.11.9 çıkmalı.
+
+  ---
+  Adım 3 — Eski venv'i Sil ve Yenisini Kur
+
+  Remove-Item -Recurse -Force C:\OtomasyoTool\backend\venv
+  py -3.11 -m venv C:\OtomasyoTool\backend\venv
+
+  ---
+  Adım 4 — Venv Aktif Et ve Paketleri Kur
+
+  C:\OtomasyoTool\backend\venv\Scripts\activate
+  pip install -r C:\OtomasyoTool\backend\requirements.txt
+
+  ---
+  Adım 5 — Test Et
+
+  python -c "import pywinauto; print('OK')"
+  python -c "import pywin32; print('OK')"
+
+  ---
+  Adım 1'i tamamlayınca diğerlerine geçelim. Hangi adımda takıldıysan söyle.
