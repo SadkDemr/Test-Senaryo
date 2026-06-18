@@ -1,0 +1,65 @@
+{
+  "run_id": "69a507db",
+  "scenario_name": "Postman",
+  "scenario_folder": "Postman",
+  "platform": "desktop",
+  "started_at": "2026-06-16T21:17:46.917231",
+  "ended_at": "2026-06-16T21:17:59.414494",
+  "exit_code": 1,
+  "total_steps": 10,
+  "passed": 5,
+  "failed": 1,
+  "steps": [
+    {
+      "index": 0,
+      "label": "3 saniye bekle",
+      "status": "pass"
+    },
+    {
+      "index": 1,
+      "label": "\"Ctrl+Tttt\" bas",
+      "status": "pass"
+    },
+    {
+      "index": 2,
+      "label": "2 saniye bekle",
+      "status": "pass"
+    },
+    {
+      "index": 3,
+      "label": "\"Enter URL or paste text\" tıkla",
+      "status": "pass"
+    },
+    {
+      "index": 4,
+      "label": "sql",
+      "status": "pass"
+    },
+    {
+      "index": 5,
+      "label": "api",
+      "status": "fail"
+    },
+    {
+      "index": 6,
+      "label": "{{agirlik}} yaz",
+      "status": "unknown"
+    },
+    {
+      "index": 7,
+      "label": "{{postId}} yaz",
+      "status": "unknown"
+    },
+    {
+      "index": 8,
+      "label": "Görsel element",
+      "status": "unknown"
+    },
+    {
+      "index": 9,
+      "label": "Görsel element",
+      "status": "unknown"
+    }
+  ],
+  "terminal_log": "[DESKTOP] pytesseract kullanılamıyor — OCR devre dışı\nBaşlatılıyor: C:\\Users\\Sadik Demir\\AppData\\Local\\Postman\\Postman.exe\n[SQL] 1 kayit:\n   [55]\n[SQL→_VARS] agirlik = 55\n[FAIL] HTTPSConnectionPool(host='jsonplaceholder.typicode.com', port=443): Max retries exceeded with url: /posts/1 (Caused by NameResolutionError(\"HTTPSConnection(host='jsonplaceholder.typicode.com', port=443): Failed to resolve 'jsonplaceholder.typicode.com' ([Errno 11001] getaddrinfo failed)\"))\nHATA: HTTPSConnectionPool(host='jsonplaceholder.typicode.com', port=443): Max retries exceeded with url: /posts/1 (Caused by NameResolutionError(\"HTTPSConnection(host='jsonplaceholder.typicode.com', port=443): Failed to resolve 'jsonplaceholder.typicode.com' ([Errno 11001] getaddrinfo failed)\"))\nTraceback (most recent call last):\n  File \"C:\\Users\\Sadik Demir\\Desktop\\backend\\venv\\Lib\\site-packages\\urllib3\\connection.py\", line 204, in _new_conn\n    sock = connection.create_connection(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Sadik Demir\\Desktop\\backend\\venv\\Lib\\site-packages\\urllib3\\util\\connection.py\", line 60, in create_connection\n    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Sadik Demir\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\socket.py\", line 963, in getaddrinfo\n    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsocket.gaierror: [Errno 11001] getaddrinfo failed\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\Sadik Demir\\Desktop\\backend\\venv\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 787, in urlopen\n    response = self._make_request(\n               ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Sadik Demir\\Desktop\\backend\\venv\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 488, in _make_request\n    raise new_e\n  File \"C:\\Users\\Sadik Demir\\Desktop\\backend\\venv\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 464, in _make_request\n    self._validate_conn(conn)\n  File \"C:\\Users\\Sadik Demir\\Desktop\\backend\\venv\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 1093, in _validate_conn\n    conn.connect()\n  File \"C:\\Users\\Sadik Demir\\Desktop\\backend\\venv\\Lib\\site-packages\\urllib3\\connection.py\", line 759, in connect\n    self.sock = sock = self._new_conn()\n                       ^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Sadik Demir\\Desktop\\backend\\venv\\Lib\\site-packages\\urllib3\\connection.py\", line 211, in _new_conn\n    raise NameResolutionError(self.host, self, e) from e\nurllib3.exceptions.NameResolutionError: HTTPSConnection(host='jsonplaceholder.typicode.com', port=443): Failed to resolve 'jsonplaceholder.typicode.com' ([Errno 11001] getaddrinfo failed)\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\Sadik Demir\\Desktop\\backend\\venv\\Lib\\site-packages\\requests\\adapters.py\", line 486, in send\n    resp = conn.urlopen(\n           ^^^^^^^^^^^^^\n  File \"C:\\Users\\Sadik Demir\\Desktop\\backend\\venv\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 841, in urlopen\n    retries = retries.increment(\n              ^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Sadik Demir\\Desktop\\backend\\venv\\Lib\\site-packages\\urllib3\\util\\retry.py\", line 519, in increment\n    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nurllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='jsonplaceholder.typicode.com', port=443): Max retries exceeded with url: /posts/1 (Caused by NameResolutionError(\"HTTPSConnection(host='jsonplaceholder.typicode.com', port=443): Failed to resolve 'jsonplaceholder.typicode.com' ([Errno 11001] getaddrinfo failed)\"))\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\SADIKD~1\\AppData\\Local\\Temp\\ai_test_05t85ywx.py\", line 553, in <module>\n    _resp_5 = _rm.get(' https://jsonplaceholder.typicode.com/posts/1', headers=_hdrs_5, timeout=30)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Sadik Demir\\Desktop\\backend\\venv\\Lib\\site-packages\\requests\\api.py\", line 73, in get\n    return request(\"get\", url, params=params, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Sadik Demir\\Desktop\\backend\\venv\\Lib\\site-packages\\requests\\api.py\", line 59, in request\n    return session.request(method=method, url=url, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Sadik Demir\\Desktop\\backend\\venv\\Lib\\site-packages\\requests\\sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Sadik Demir\\Desktop\\backend\\venv\\Lib\\site-packages\\requests\\sessions.py\", line 703, in send\n    r = adapter.send(request, **kwargs)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Sadik Demir\\Desktop\\backend\\venv\\Lib\\site-packages\\requests\\adapters.py\", line 519, in send\n    raise ConnectionError(e, request=request)\nrequests.exceptions.ConnectionError: HTTPSConnectionPool(host='jsonplaceholder.typicode.com', port=443): Max retries exceeded with url: /posts/1 (Caused by NameResolutionError(\"HTTPSConnection(host='jsonplaceholder.typicode.com', port=443): Failed to resolve 'jsonplaceholder.typicode.com' ([Errno 11001] getaddrinfo failed)\"))"
+}
