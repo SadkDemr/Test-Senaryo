@@ -1,0 +1,160 @@
+{
+  "run_id": "14943231",
+  "scenario_name": "Hesap Açma",
+  "scenario_folder": "Hesap_Açma",
+  "platform": "mobile",
+  "started_at": "2026-06-16T21:44:29.147206",
+  "ended_at": "2026-06-16T21:44:53.949074",
+  "exit_code": 1,
+  "total_steps": 29,
+  "passed": 0,
+  "failed": 0,
+  "steps": [
+    {
+      "index": 0,
+      "label": "\"Ortam\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 1,
+      "label": "\"Prep\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 2,
+      "label": "\"Devam\" Tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 3,
+      "label": "5 saniye beklenir",
+      "status": "unknown"
+    },
+    {
+      "index": 4,
+      "label": "\"Giriş Yap\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 5,
+      "label": "Şifre Giriniz alanına \"121212\" yazılır",
+      "status": "unknown"
+    },
+    {
+      "index": 6,
+      "label": "3 saniye bekle",
+      "status": "unknown"
+    },
+    {
+      "index": 7,
+      "label": "\"Tamamla Kazan\" yazısının göründüğünü doğrula",
+      "status": "unknown"
+    },
+    {
+      "index": 8,
+      "label": "\"Hesap/Kart\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 9,
+      "label": "\"Hesaplar\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 10,
+      "label": "\"//*[@resource-id='com.vakifkatilim.mobil.test:id/fabAddAccount']\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 11,
+      "label": "\"Seçiniz\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 12,
+      "label": "\"Cari Hesaplar\" yazısının göründüğünü doğrula",
+      "status": "unknown"
+    },
+    {
+      "index": 13,
+      "label": "\"Cari Hesap\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 14,
+      "label": "\"Döviz Cinsi\" yazısının göründüğünü doğrula",
+      "status": "unknown"
+    },
+    {
+      "index": 15,
+      "label": "\"Döviz Cinsi\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 16,
+      "label": "\"Türk Lirası\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 17,
+      "label": "2 saniye beklenir",
+      "status": "unknown"
+    },
+    {
+      "index": 18,
+      "label": "\"//android.view.View[@resource-id='com.vakifkatilim.mobil.test:id/btnNext']\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 19,
+      "label": "\"Hesap Adı\" yazısının göründüğünü doğrula",
+      "status": "unknown"
+    },
+    {
+      "index": 20,
+      "label": "\"Giriniz\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 21,
+      "label": "\"Test\" yaz",
+      "status": "unknown"
+    },
+    {
+      "index": 22,
+      "label": "klavye kapat",
+      "status": "unknown"
+    },
+    {
+      "index": 23,
+      "label": "\"//android.widget.ToggleButton[@resource-id='com.vakifkatilim.mobil.test:id/switchReadAndConfirm']\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 24,
+      "label": "\"//android.view.View[@resource-id='com.vakifkatilim.mobil.test:id/btnNext']\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 25,
+      "label": "\"Hesap Numarası\" yazısının göründüğünü doğrula",
+      "status": "unknown"
+    },
+    {
+      "index": 26,
+      "label": "\"//*[@resource-id='com.vakifkatilim.mobil.test:id/btnConfirm']\" tıklanır",
+      "status": "unknown"
+    },
+    {
+      "index": 27,
+      "label": "\"Hesabınız oluşturuldu.\" yazısının göründüğünü doğrula",
+      "status": "unknown"
+    },
+    {
+      "index": 28,
+      "label": "\"Tamam\" tıklanır",
+      "status": "unknown"
+    }
+  ],
+  "terminal_log": "Appium baglaniyor: http://localhost:4723\nTraceback (most recent call last):\n  File \"C:\\Users\\SADIKD~1\\AppData\\Local\\Temp\\ai_test_dve68wqf.py\", line 503, in <module>\n    driver = webdriver.Remote(\"http://localhost:4723\", options=options)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Sadik Demir\\Desktop\\backend\\venv\\Lib\\site-packages\\appium\\webdriver\\webdriver.py\", line 229, in __init__\n    super().__init__(\n  File \"C:\\Users\\Sadik Demir\\Desktop\\backend\\venv\\Lib\\site-packages\\selenium\\webdriver\\remote\\webdriver.py\", line 208, in __init__\n    self.start_session(capabilities)\n  File \"C:\\Users\\Sadik Demir\\Desktop\\backend\\venv\\Lib\\site-packages\\appium\\webdriver\\webdriver.py\", line 318, in start_session\n    response = self.execute(RemoteCommand.NEW_SESSION, w3c_caps)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Sadik Demir\\Desktop\\backend\\venv\\Lib\\site-packages\\selenium\\webdriver\\remote\\webdriver.py\", line 347, in execute\n    self.error_handler.check_response(response)\n  File \"C:\\Users\\Sadik Demir\\Desktop\\backend\\venv\\Lib\\site-packages\\selenium\\webdriver\\remote\\errorhandler.py\", line 229, in check_response\n    raise exception_class(message, screen, stacktrace)\nselenium.common.exceptions.WebDriverException: Message: Could not find a connected Android device in 20000ms\nStacktrace:\nUnknownError: Could not find a connected Android device in 20000ms\n    at getResponseForW3CError (C:\\Users\\Sadik Demir\\AppData\\Roaming\\npm\\node_modules\\appium\\node_modules\\@appium\\base-driver\\lib\\protocol\\errors.ts:1103:34)\n    at asyncHandler (C:\\Users\\Sadik Demir\\AppData\\Roaming\\npm\\node_modules\\appium\\node_modules\\@appium\\base-driver\\lib\\protocol\\protocol.ts:507:57)\nThe above error is caused by\nError: Could not find a connected Android device in 20000ms\n    at ADB.getDevicesWithRetry (C:\\Users\\Sadik Demir\\.appium\\node_modules\\appium-uiautomator2-driver\\node_modules\\appium-adb\\lib\\tools\\system-calls.js:295:13)\n    at AndroidUiautomator2Driver.getDeviceInfoFromCaps (C:\\Users\\Sadik Demir\\.appium\\node_modules\\appium-uiautomator2-driver\\node_modules\\appium-android-driver\\lib\\commands\\device\\common.js:41:21)\n    at AndroidUiautomator2Driver.createSession (C:\\Users\\Sadik Demir\\.appium\\node_modules\\appium-uiautomator2-driver\\lib\\driver.ts:361:30)\n    at AppiumDriver.createSession (C:\\Users\\Sadik Demir\\AppData\\Roaming\\npm\\node_modules\\appium\\lib\\appium.js:360:35)"
+}

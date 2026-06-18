@@ -1,0 +1,64 @@
+{
+  "run_id": "2a098413",
+  "scenario_name": "Postman",
+  "scenario_folder": "Postman",
+  "platform": "desktop",
+  "started_at": "2026-06-16T06:28:38.844676",
+  "ended_at": "2026-06-16T06:28:50.475999",
+  "exit_code": 1,
+  "total_steps": 10,
+  "passed": 5,
+  "failed": 1,
+  "steps": [
+    {
+      "index": 0,
+      "label": "3 saniye bekle",
+      "status": "pass"
+    },
+    {
+      "index": 1,
+      "label": "\"Ctrl+T\" bas",
+      "status": "pass"
+    },
+    {
+      "index": 2,
+      "label": "2 saniye bekle",
+      "status": "pass"
+    },
+    {
+      "index": 3,
+      "label": "\"Enter URL or paste text\" tıkla",
+      "status": "pass"
+    },
+    {
+      "index": 4,
+      "label": "sql",
+      "status": "pass"
+    },
+    {
+      "index": 5,
+      "label": "api",
+      "status": "fail"
+    },
+    {
+      "index": 6,
+      "label": "{{agirlik}} yaz",
+      "status": "unknown"
+    },
+    {
+      "index": 7,
+      "label": "{{postId}} yaz",
+      "status": "unknown"
+    },
+    {
+      "index": 8,
+      "label": "Görsel element",
+      "status": "unknown"
+    },
+    {
+      "index": 9,
+      "label": "Görsel element",
+      "status": "unknown"
+    }
+  ]
+}
