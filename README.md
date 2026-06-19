@@ -1,11 +1,22 @@
-C:\OtomasyoTool>git pull
-The authenticity of host '[ssh.github.com]:443 ([20.27.177.118]:443)' can't be established.
-ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
-This key is not known by any other names.
-Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-Warning: Permanently added '[ssh.github.com]:443' (ED25519) to the list of known hosts.
-git@ssh.github.com: Permission denied (publickey).
-fatal: Could not read from remote repository.
+  Adım 1: Remote URL'i HTTPS'e çevir
+  git remote set-url origin https://github.com/KULLANICI_ADI/REPO_ADI.git
 
-Please make sure you have the correct access rights
-and the repository exists.
+  Repo adını öğrenmek için:
+  git remote -v
+
+  Adım 2: GitHub Personal Access Token oluştur
+
+  GitHub'da: Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token
+
+  - Scope olarak repo seç
+  - Token'ı kopyala
+
+  Adım 3: git pull yap
+  git pull
+
+  Kullanıcı adı ve şifre soracak — şifre yerine token'ı yapıştır.
+
+  Adım 4: Token'ı kaydet (her seferinde sormasm için)
+  git config --global credential.helper store
+
+  Bir kez daha git pull yapınca token'ı gir, sonra kaydedecek.
