@@ -1,22 +1,15 @@
-  Adım 1: Remote URL'i HTTPS'e çevir
-  git remote set-url origin https://github.com/KULLANICI_ADI/REPO_ADI.git
+C:\OtomasyoTool\backend>run.bat
 
-  Repo adını öğrenmek için:
-  git remote -v
+GitHub'dan guncelleme cekiliyor...
+git@ssh.github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
 
-  Adım 2: GitHub Personal Access Token oluştur
+Please make sure you have the correct access rights
+and the repository exists.
+Guncelleme tamamlandi.
 
-  GitHub'da: Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token
-
-  - Scope olarak repo seç
-  - Token'ı kopyala
-
-  Adım 3: git pull yap
-  git pull
-
-  Kullanıcı adı ve şifre soracak — şifre yerine token'ı yapıştır.
-
-  Adım 4: Token'ı kaydet (her seferinde sormasm için)
-  git config --global credential.helper store
-
-  Bir kez daha git pull yapınca token'ı gir, sonra kaydedecek.
+  Paketler eksik, yukleniyor...
+No Python at '"C:\Users\kftte\AppData\Local\Programs\Python\Python311\python.exe'
+No Python at '"C:\Users\kftte\AppData\Local\Programs\Python\Python311\python.exe'
+HATA: Kritik paketler yuklenemedi!
+Press any key to continue . . .
