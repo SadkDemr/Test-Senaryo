@@ -1,14 +1,17 @@
-[DESKTOP] pytesseract kullanılamıyor — OCR devre dışı
-[DESKTOP] pywinauto kullanılamıyor — pencere kontrolü devre dışı
-Başlatılıyor: C:\Program Files (x86)\VK\Preprod\bin\BOA.UI.Container.exe
-[CLICK] 'Gelen Kutusu' aranıyor...
-[VISION] Hata: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [WinError 10061] Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı"))
-[FAIL] Element bulunamadı: 'Gelen Kutusu'
-HATA: Element bulunamadı: 'Gelen Kutusu'
+(venv) C:\OtomasyoTool\backend>python.exe -c "from pywinauto import Application; print('OK')"
 Traceback (most recent call last):
-File "C:\Users\K240C~1.MD2\AppData\Local\Temp\ai_test_7_grjvy0.py", line 561, in <module>
-_safe_click_desktop('Gelen Kutusu', _WINDOW_TITLE)
-File "C:\Users\K240C~1.MD2\AppData\Local\Temp\ai_test_7_grjvy0.py", line 340, in _safe_click_desktop
-raise Exception(f"Element bulunamadı: '{target}'")
-Exception: Element bulunamadı: 'Gelen Kutusu'
-data: Kosum hata ile bitti. (exit: 1)
+  File "<string>", line 1, in <module>
+  File "C:\OtomasyoTool\backend\venv\Lib\site-packages\pywinauto\__init__.py", line 89, in <module>
+    from . import findwindows
+  File "C:\OtomasyoTool\backend\venv\Lib\site-packages\pywinauto\findwindows.py", line 42, in <module>
+    from . import controls
+  File "C:\OtomasyoTool\backend\venv\Lib\site-packages\pywinauto\controls\__init__.py", line 36, in <module>
+    from . import uiawrapper # register "uia" back-end (at the end of uiawrapper module)
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\OtomasyoTool\backend\venv\Lib\site-packages\pywinauto\controls\uiawrapper.py", line 42, in <module>
+    from .. import backend
+  File "C:\OtomasyoTool\backend\venv\Lib\site-packages\pywinauto\backend.py", line 35, in <module>
+    from .base_wrapper import BaseWrapper
+  File "C:\OtomasyoTool\backend\venv\Lib\site-packages\pywinauto\base_wrapper.py", line 44, in <module>
+    import win32ui
+ImportError: DLL load failed while importing win32ui: Belirtilen modül bulunamadı.
