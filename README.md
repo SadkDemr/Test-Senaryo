@@ -1,15 +1,26 @@
-C:\OtomasyoTool\backend>run.bat
+Sunucuda Python'u yeniden yüklemen gerekiyor. Adımlar:
 
-GitHub'dan guncelleme cekiliyor...
-git@ssh.github.com: Permission denied (publickey).
-fatal: Could not read from remote repository.
+  1. Python 3.11 indir ve kur
 
-Please make sure you have the correct access rights
-and the repository exists.
-Guncelleme tamamlandi.
+  Tarayıcıdan: https://www.python.org/downloads/release/python-3119/
 
-  Paketler eksik, yukleniyor...
-No Python at '"C:\Users\kftte\AppData\Local\Programs\Python\Python311\python.exe'
-No Python at '"C:\Users\kftte\AppData\Local\Programs\Python\Python311\python.exe'
-HATA: Kritik paketler yuklenemedi!
-Press any key to continue . . .
+  Windows installer (64-bit) dosyasını indir.
+
+  Kurulum sırasında mutlaka şunu işaretle:
+  - ✅ Add Python to PATH
+  - ✅ Install for all users (tüm Windows kullanıcıları görsün)
+
+  2. Kurulum sonrası kontrol et:
+  python --version
+  Python 3.11.x çıkması lazım.
+
+  3. Eski venv'i sil ve yeniden oluştur:
+  cd C:\OtomasyoTool\backend
+  rmdir /s /q venv
+  setup.bat
+
+  4. Sonra çalıştır:
+  run.bat
+
+  ---
+  "Install for all users" seçmezsen yeni kullanıcı (k.md200207) Python'u görmeyebilir — bunu atlamaman önemli.
