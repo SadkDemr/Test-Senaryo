@@ -857,6 +857,20 @@ try:
         print('STEP_FAIL:9')
         raise
 
+    _check_stop()
+    # [KOORDİNAT TIKLAMA] Nokta 1 tıkla → (460, 307)
+    print('STEP_START:10')
+    try:
+        _refocus_window()
+        _do_robust_click(460, 307)
+        time.sleep(0.3)
+        print('[OK] Koordinat tiklandi: (460, 307)')
+        print('STEP_DONE:10')
+    except Exception as _e_10:
+        print(f'[FAIL] {_e_10}')
+        print('STEP_FAIL:10')
+        raise
+
 except Exception as e:
     print(f"HATA: {e}")
     raise
