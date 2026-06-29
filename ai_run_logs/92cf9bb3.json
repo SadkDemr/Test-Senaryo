@@ -1,0 +1,65 @@
+{
+  "run_id": "92cf9bb3",
+  "scenario_name": "Postman",
+  "scenario_folder": "Postman",
+  "platform": "desktop",
+  "started_at": "2026-06-18T22:14:42.410646",
+  "ended_at": "2026-06-18T22:14:57.278860",
+  "exit_code": 0,
+  "total_steps": 10,
+  "passed": 10,
+  "failed": 0,
+  "steps": [
+    {
+      "index": 0,
+      "label": "3 saniye bekle",
+      "status": "pass"
+    },
+    {
+      "index": 1,
+      "label": "\"Ctrl+T\" bas",
+      "status": "pass"
+    },
+    {
+      "index": 2,
+      "label": "2 saniye bekle",
+      "status": "pass"
+    },
+    {
+      "index": 3,
+      "label": "\"Enter URL or paste text\" tıkla",
+      "status": "pass"
+    },
+    {
+      "index": 4,
+      "label": "sql",
+      "status": "pass"
+    },
+    {
+      "index": 5,
+      "label": "api",
+      "status": "pass"
+    },
+    {
+      "index": 6,
+      "label": "{{agirlik}} yaz",
+      "status": "pass"
+    },
+    {
+      "index": 7,
+      "label": "{{postId}} yaz",
+      "status": "pass"
+    },
+    {
+      "index": 8,
+      "label": "Görsel element",
+      "status": "pass"
+    },
+    {
+      "index": 9,
+      "label": "Görsel element",
+      "status": "pass"
+    }
+  ],
+  "terminal_log": "[DESKTOP] pytesseract kullanılamıyor — OCR devre dışı\nBaşlatılıyor: C:\\Users\\Sadik Demir\\AppData\\Local\\Postman\\Postman.exe\n▶ [0] 3 saniye bekle\n✓ [0] PASS\n▶ [1] \"Ctrl+T\" bas\n✓ [1] PASS\n▶ [2] 2 saniye bekle\n✓ [2] PASS\n▶ [3] \"Enter URL or paste text\" tıkla\n✓ [3] PASS\n▶ [4] sql\n[SQL] 1 kayit:\n   [55]\n[SQL→_VARS] agirlik = 55\n✓ [4] PASS\n▶ [5] api\n[API] Status: 200\n[API] Yanit: {\n  \"userId\": 1,\n  \"id\": 1,\n  \"title\": \"sunt aut facere repellat provident occaecati excepturi optio reprehenderit\",\n  \"body\": \"quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto\"\n}\n[API.title] sunt aut facere repellat provident occaecati excepturi optio reprehenderit\n[API→_VARS] postId = sunt aut facere repellat provident occaecati excepturi optio reprehenderit\n✓ [5] PASS\n▶ [6] {{agirlik}} yaz\n[TYPE] '55'\n[OK] Clipboard paste: '55'\n✓ [6] PASS\n▶ [7] {{postId}} yaz\n[TYPE] 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit'\n[OK] Clipboard paste: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit'\n✓ [7] PASS\n▶ [8] Görsel element\n[OK] Gorsel tiklandi: Görsel element\n✓ [8] PASS\n▶ [9] Görsel element\n[OK] Gorsel tiklandi: Görsel element\n✓ [9] PASS"
+}
